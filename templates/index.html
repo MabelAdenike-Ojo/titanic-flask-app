@@ -1,1 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Titanic Survival Predictor</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #ff7f50, #ffae42, #ffd700);
+            color: #ffffff;
+            text-align: center;
+            padding: 50px;
+            min-height: 100vh;
+        }
 
+        h1 {
+            font-size: 3em;
+            margin-bottom: 30px;
+            text-shadow: 2px 2px #ff4500;
+        }
+
+        form {
+            background: rgba(255, 255, 255, 0.15);
+            padding: 30px;
+            border-radius: 15px;
+            display: inline-block;
+            box-shadow: 0 8px 16px rgba(0,0,0,0.3);
+        }
+
+        input, select {
+            padding: 10px;
+            margin: 10px;
+            border-radius: 8px;
+            border: none;
+            width: 220px;
+            font-size: 1em;
+        }
+
+        button {
+            padding: 12px 25px;
+            margin-top: 15px;
+            border-radius: 10px;
+            border: none;
+            background-color: #ffffff;
+            color: #ff4500;
+            font-weight: bold;
+            font-size: 1em;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        button:hover {
+            background-color: #ff4500;
+            color: #ffffff;
+            transform: scale(1.05);
+        }
+
+        h2 {
+            margin-top: 20px;
+            font-size: 1.5em;
+            color: #fffacd;
+            text-shadow: 1px 1px #ff4500;
+        }
+
+        footer {
+            margin-top: 50px;
+            font-size: 14px;
+            color: #fff8dc;
+        }
+
+        @media (max-width: 500px) {
+            input, select {
+                width: 100%;
+            }
+            form {
+                padding: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <h1>Titanic Survival Predictor</h1>
+
+    <form action="/predict" method="post">
+        <input type="number" name="Pclass" placeholder="Pclass (1,2,3)" min="1" max="3" required><br>
+        
+        <select name="Sex" required>
+            <option value="">Select Sex</option>
+            <option value="male">Male</option>
+            <option value="female">Female</option>
+        </select><br>
+
+        <input type="number" name="Age" placeholder="Age" step="0.1" min="0" required><br>
+        <input type="number" name="SibSp" placeholder="Siblings/Spouses aboard" min="0" required><br>
+        <input type="number" name="Parch" placeholder="Parents/Children aboard" min="0" required><br>
+        <input type="number" name="Fare" placeholder="Fare" step="0.1" min="0" required><br>
+
+        <select name="Embarked" required>
+            <option value="">Select Embarked</option>
+            <option value="C">C</option>
+            <option value="Q">Q</option>
+            <option value="S">S</option>
+        </select><br>
+
+        <button type="submit">Predict</button>
+    </form>
+
+    {% if prediction_text %}
+        <h2>{{ prediction_text }}</h2>
+    {% endif %}
+
+    <footer>
+        Mabel Adenike Ojo MSc Bioinformatics Student  © 2026
+    </footer>
+</body>
+</html>
